@@ -1,0 +1,83 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class Game {
+
+	private static int computerScore = 0;
+	private static int playerScore = 0;
+	
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		run(input);
+	}
+	
+	public static void run(Scanner input) {
+		printIntro();
+		boolean gameInProgress = true;
+		
+		while(gameInProgress) {
+
+			String computerChoice = play();
+			String playerChoice = validInput(input);
+			if (playerChoice.equalsIgnoreCase("Q")) {
+				scoreBoard();
+				if(computerScore == playerScore) {
+					System.out.println("You tied with the computer");
+				} else if (computerScore > playerScore) {
+					System.out.println("You lost! :(");
+				} else {
+					System.out.println("You won! :)");
+				}
+				System.out.println("Thanks for playing!");
+				break;
+			}
+			System.out.printf("Player chose: %s \nComputer chose: %s\n", playerChoice, computerChoice);
+			if(playerChoice.equalsIgnoreCase(computerChoice)) {
+				System.out.println("It's a tie!");
+			} else if ((playerChoice.equalsIgnoreCase("Rock") && computerChoice.equalsIgnoreCase("Scissors") || (playerChoice.equalsIgnoreCase("Paper") && computerChoice.equalsIgnoreCase("Rock")) || (playerChoice.equalsIgnoreCase("Scissors") && playerChoice.equalsIgnoreCase("Paper")))) {
+				System.out.println("You win this round!");
+				playerScore++;
+			} else {
+				System.out.println("The computer wins this round");
+				computerScore++;
+			}
+			
+			System.out.printf("Current Score \nPlayer: %s\nComputer: %s\n",playerScore,computerScore);
+		}
+	}
+	
+	public static void printIntro() {
+		System.out.println("Welcome to Greg's Rock, Paper, Scissors game");
+		System.out.println("Please enter 'Rock' 'Paper' or 'Scissors' to proceed");
+		System.out.println("Or enter 'Q' to quit");
+	}
+	
+	public static String play() {
+		Random r = new Random();
+		int computerChoice = r.nextInt(3)+1;
+		if(computerChoice == 1) {
+			return "Rock";
+		} else if (computerChoice == 2) {
+			return "Paper";
+		} else {
+			return "Scissors";
+		}
+	}
+	
+	public static String validInput(Scanner input) {
+		boolean invalid = true;
+		String userInput = "";
+		while(invalid) {
+			userInput = input.nextLine();
+			if(userInput.equalsIgnoreCase("Rock") || userInput.equalsIgnoreCase("Paper") || userInput.equalsIgnoreCase("Scissors") || userInput.equalsIgnoreCase("Q")) {
+				invalid = !invalid;
+			}
+		}
+		return userInput;
+	}
+	
+	public static void scoreBoard() {
+		System.out.println("Player points: " + playerScore);
+		System.out.println("Computer points: " + computerScore);
+	}
+}
