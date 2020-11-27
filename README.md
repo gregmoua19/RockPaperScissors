@@ -1,2 +1,2 @@
 # RockPaperScissors
-A short rock paper scissors project I just made
+A short rock paper scissors project I made.
