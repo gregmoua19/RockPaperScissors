@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class Game {
 
+	//two variables beyond the scope of any methods to 
+	//keep track of the player and computer scores
 	private static int computerScore = 0;
 	private static int playerScore = 0;
 	
@@ -10,6 +12,7 @@ public class Game {
 		Scanner input = new Scanner(System.in);
 		run(input);
 	}
+	
 	
 	public static void run(Scanner input) {
 		printIntro();
@@ -52,6 +55,10 @@ public class Game {
 		System.out.println("Or enter 'Q' to quit");
 	}
 	
+	/**
+	*Method that will randomly generate a number from
+	*1-3 and return Rock/Paper/Scissors depending on the number
+	*/
 	public static String play() {
 		Random r = new Random();
 		int computerChoice = r.nextInt(3)+1;
@@ -64,6 +71,11 @@ public class Game {
 		}
 	}
 	
+	/**
+	*Method that takes in a Scanner and keeps the 
+	*user in a loop until they enter valid input.
+	*Returns the valid input
+	*/
 	public static String validInput(Scanner input) {
 		boolean invalid = true;
 		String userInput = "";
@@ -76,6 +88,9 @@ public class Game {
 		return userInput;
 	}
 	
+	/**
+	*Method that prints both the player and the computer's scores
+	*/
 	public static void scoreBoard() {
 		System.out.println("Player points: " + playerScore);
 		System.out.println("Computer points: " + computerScore);
