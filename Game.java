@@ -20,8 +20,14 @@ public class Game {
 		
 		while(gameInProgress) {
 
+			//reading in and storing the computer's choice
 			String computerChoice = play();
+			
+			//reading in and storing the player's choice
 			String playerChoice = validInput(input);
+			
+			//if the player chooses to exit this will break 
+			//out of the loop and output the total score
 			if (playerChoice.equalsIgnoreCase("Q")) {
 				scoreBoard();
 				if(computerScore == playerScore) {
@@ -35,6 +41,7 @@ public class Game {
 				break;
 			}
 			System.out.printf("Player chose: %s \nComputer chose: %s\n", playerChoice, computerChoice);
+			
 			if(playerChoice.equalsIgnoreCase(computerChoice)) {
 				System.out.println("It's a tie!");
 			} else if ((playerChoice.equalsIgnoreCase("Rock") && computerChoice.equalsIgnoreCase("Scissors") || (playerChoice.equalsIgnoreCase("Paper") && computerChoice.equalsIgnoreCase("Rock")) || (playerChoice.equalsIgnoreCase("Scissors") && playerChoice.equalsIgnoreCase("Paper")))) {
